@@ -1,38 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import './resources/styles.css';
 
-function App() {
-  const [time, setTime] = useState(0);
-  const [running, setRunning] = useState(false);
 
-  useEffect(() => {
-    let interval;
-    if (running) {
-      interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 10);
-      }, 10);
-    }
-    return () => clearInterval(interval);
-  }, [running]);
+import Header from './components/header_footer/Header';
+import Footer from './components/header_footer/Footer';
+import Featured from './components/featured';
 
+const App = () => {
   return (
-    <>
-      <div className="App">
-        <h1>01-Stopwatch</h1>
-        <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-        <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
-      </div>
-      <div>
-        <button onClick={() => setRunning(true)}>Start</button>
-        <button onClick={() => setRunning(false)}>Stop</button>
-        <button onClick={() => {
-          setRunning(false);
-          setTime(0);
-        }}>Reset</button>
-      </div>
-    </>
+    <div className="App">
+      <Header/>
+
+      <>
+        <Featured/>
+      </>
+
+
+      <div style={{backgroundColor:'red',height:'800px'}}></div>
+      <div style={{backgroundColor:'blue',height:'800px'}}></div>
+      <div style={{backgroundColor:'green',height:'800px'}}></div>
+      <div style={{backgroundColor:'yellow',height:'800px'}}></div>
+
+
+      <Footer/>
+    </div>
   );
 }
 
